@@ -16,6 +16,9 @@ export class UsersService {
 
   // Find a user with a given id
   findOne(id: number) {
+    if (!id) {
+      return null;
+    }
     return this.repo.findOne(id);
   }
 
@@ -34,7 +37,7 @@ export class UsersService {
     Object.assign(user, attrs);
     return this.repo.save(user);
   }
-  
+
   // Delte user with given id
   async remove(id: number) {
     const user = await this.findOne(id);
